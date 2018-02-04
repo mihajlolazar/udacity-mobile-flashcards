@@ -29,10 +29,10 @@ export function setLocalNotification () {
           Permissions.askAsync(Permissions.NOTIFICATIONS)
               .then(({ status }) => {
                 if (status === 'granted') {
-                  Notifications.cancelAllScheduledNotificationsAsync()
+                  Notifications.cancelAllScheduledNotificationsAsync();
 
                   let today = new Date();
-                  today.setDate(today.getDate());
+                  today.setDate(today.getDate() + 1);
                   today.setHours(2);
                   today.setMinutes(15);
 

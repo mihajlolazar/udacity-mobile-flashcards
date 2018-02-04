@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "23.0.0"
+    "sdkVersion": "23.0.0",
+    "name": "Mobile Flashcards by Mihajlo",
+    "description": "Simple Flashcards. Nothing special.",
+    "slug": "mobileflashcardsmihajlo",
+    "version": "1.0",
+    "ios": {
+      "bundleIdentifier": "org.udacifitness.exp"
+    },
+    "android": {
+      "package": "org.udacifitness.exp"
+    }
   }
 }

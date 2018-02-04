@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { View, Text, FlatList, TouchableOpacity, AsyncStorage, Button } from 'react-native';
 import { DeckItem } from './DeckItem';
 
-import * as api  from '../utils/api';
-import { setDecks } from '../actions/index';
-import { deck } from '../styles/deck';
-import { container } from '../styles/container';
-import { message } from '../styles/message';
-import { text } from "../styles/text";
+import * as api       from '../utils/api';
+
+import { setDecks }   from '../actions/index';
+import { deck }       from '../styles/deck';
+import { container }  from '../styles/container';
+import { message }    from '../styles/message';
+import { text }       from "../styles/text";
 
 class DeckList extends Component {
   state = {
