@@ -71,10 +71,6 @@ const AppNavigator = StackNavigator({
 });
 
 export default class App extends React.Component {
-  componentDidMount(){
-    setLocalNotification();
-  }
-
   render() {
     return <Provider store={createStore(reducer)}>
       <View style={{flex: 1}}>

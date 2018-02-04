@@ -21,6 +21,11 @@ function createNotification () {
   }
 }
 
+export function clearNotification () {
+  return AsyncStorage.removeItem(NOTIFICATION_KEY)
+      .then(Notifications.cancelAllScheduledNotificationsAsync)
+}
+
 export function setLocalNotification () {
   AsyncStorage.getItem(NOTIFICATION_KEY)
       .then(JSON.parse)
@@ -31,15 +36,15 @@ export function setLocalNotification () {
                 if (status === 'granted') {
                   Notifications.cancelAllScheduledNotificationsAsync();
 
-                  let today = new Date();
-                  today.setDate(today.getDate() + 1);
-                  today.setHours(2);
-                  today.setMinutes(15);
+                  let tomorrow = new Date();
+                  tomorrow.setDate(tomorrow.getDate() + 1);
+                  tomorrow.setHours(21);
+                  tomorrow.setMinutes(0);
 
                   Notifications.scheduleLocalNotificationAsync(
                       createNotification(),
                       {
-                        time: today,
+                        time: tomorrow,
                         repeat: 'day',
                       }
                   );

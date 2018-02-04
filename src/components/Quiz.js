@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { roundTo }    from '../utils/helpers';
+import { clearNotification, setLocalNotification } from '../utils/notifcation';
 import { text }       from '../styles/text';
 import { container }  from '../styles/container';
 import { heading }    from '../styles/heading';
@@ -9,11 +10,15 @@ import { button }     from '../styles/button';
 import { quiz }       from '../styles/quiz';
 
 export default class Quiz extends Component {
-  state = {
+  defaultState = {
     index: 0,
     score: 0,
     showAnswer: false
   };
+
+  state = this.defaultState;
+
+
 
   showAnswer(){
     this.setState({
@@ -28,20 +33,26 @@ export default class Quiz extends Component {
   }
 
   correctAnswer = () => {
-    const { score, index } = this.state;
-
-    this.setState({
-      score: score + 1,
-      index: index + 1,
-      showAnswer: false
+    this.setState( prevState => {
+      return {
+        score: prevState.score + 1,
+        index: prevState.index + 1,
+        showAnswer: false
+      }
     })
   };
 
   wrongAnswer = () => {
-    this.setState({
-      index: this.state.index + 1,
-      showAnswer: false
+    this.setState( prevState => {
+      return {
+        index: prevState.index + 1,
+        showAnswer: false
+      }
     })
+  };
+
+  resetQuiz = () => {
+    this.setState(this.defaultState);
   };
 
   render(){
@@ -50,6 +61,8 @@ export default class Quiz extends Component {
     const question      = questions[this.state.index];
 
     if( (this.state.index + 1) > questions.length ){
+      clearNotification().then(setLocalNotification);
+
       return (
         <View style={container.default}>
           <Text style={quiz.finishText}>Congrats, you finished this Quiz.</Text>
@@ -58,6 +71,11 @@ export default class Quiz extends Component {
               onPress={() => { this.props.navigation.goBack(); }}
               style={button.default}>
             <Text style={button.defaultText}>Go back to the Deck</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+              onPress={this.resetQuiz}
+              style={button.submit}>
+            <Text style={button.submitText}>Reset Quiz</Text>
           </TouchableOpacity>
         </View>
       )
