@@ -22,7 +22,7 @@ class SingleDeck extends Component {
             onPress={() => {this.props.navigation.navigate('CreateQuestion',{title,questions,})}}
             style={button.default}
         >
-          <Text style={button.defaultText}>Add new Question</Text>
+          <Text style={button.defaultText}>Add new Card</Text>
         </TouchableOpacity>
         <View>
           {!!questions.length && (

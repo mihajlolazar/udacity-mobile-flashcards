@@ -47,9 +47,12 @@ const AppNavigator = StackNavigator({
   },
   SingleDeck: {
     screen: SingleDeck,
-    navigationOptions: {
-      headerTintColor: '#000',
-    },
+    navigationOptions: ({ navigation }) => {
+      const {state} = navigation;
+      return {
+        title: `${state.params.title}`,
+      };
+    }
   },
   Quiz: {
     screen: Quiz,

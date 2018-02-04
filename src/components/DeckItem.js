@@ -6,7 +6,7 @@ export const DeckItem = ({data}) => {
   return (
       <View>
         <Text style={deck.title}>{data.title}</Text>
-        <Text style={deck.noCards}>{data.questions.length} Deck{data.questions.length > 1 ? 's' : ''}</Text>
+        <Text style={deck.noCards}>{data.questions.length} Card{data.questions.length !== 1 ? 's' : ''}</Text>
       </View>
   )
 };
